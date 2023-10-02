@@ -11,8 +11,16 @@ func getMessage(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, "Get Method!!")
 }
 
-func postMessage(w http.ResponseWriter, r *http.Request){
+func postMessage(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, "Post Method!!")
+}
+
+func putMessage(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintln(w, "Put Method!!")
+}
+
+func deleteMessage(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintln(w, "Delete Method!!")
 }
 
 func main() {
@@ -21,6 +29,8 @@ func main() {
 	// Define the route using the Gorilla Mux router
 	router.HandleFunc("/get", getMessage).Methods("GET")
 	router.HandleFunc("/post", postMessage).Methods("POST")
+	router.HandleFunc("/put", putMessage).Methods("PUT")
+	router.HandleFunc("/delete", deleteMessage).Methods("DELETE")
 
 	fmt.Println("Server is running on PORT: 8080")
 	err := http.ListenAndServe(":8080", router)
